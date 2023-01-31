@@ -10,21 +10,9 @@ class Collor
 
     public function __construct(int $red, int $green, int $blue)
     {
-        if ($red > 0 && $red <= 255) {
-            $this->setRed($red);
-        } else {
-            throw new \Exception("не коректний $green");
-        };
-        if ($green > 0 && $green <= 255) {
-            $this->setGreen($green);
-        }else{
-        throw new \Exception("не коректний $green");
-        };
-        if($blue > 0 && $blue <=  255){
-            $this->setBlue($blue);
-        }else{
-        throw new \Exception("не коректний $green");
-        };
+        $this->setRed($red);
+        $this->setGreen($green);
+        $this->setBlue($blue);
     }
 
     public function getRed()
@@ -32,9 +20,12 @@ class Collor
         return $this->red;
     }
 
-    public function setRed($red)
+    private function setRed($red): void
     {
-        $this->red = $red;
+        if ($red > 0 && $red <= 255) {
+            $this->setRed($red);
+        }
+        throw new \Exception("не коректний RED");
     }
 
     public function getGreen()
@@ -42,25 +33,33 @@ class Collor
         return $this->green;
     }
 
-    public function setGreen($green)
+    private function setGreen(int $green): void
     {
-        $this->green = $green;
+        if ($green > 0 && $green <= 255) {
+            $this->setGreen($green);
+        }
+        throw new \Exception("не коректний GREEN");
     }
 
     public function getBlue()
     {
         return $this->blue;
     }
-    public function setBlue($blue)
+    private function setBlue(int $blue): void
     {
-        $this->blue = $blue;
+        if($blue > 0 && $blue <= 255){
+            $this->setBlue($blue);
+        }
+        throw new \Exception("не коректний BLUE");
     }
 
-    public function mix(int $red, int $green, int $blue): void
+    public function mix(Collor $color): Collor
     {
-        $this->red = round(($this->red + $red) / 2);
-        $this->green = round(($this->green + $red) / 2);
-        $this->blue = round(($this->blue + $blue) / 2);
+
+        $r = ($this->red + $color->getRed()) / 2;
+        $g = ($this->green + $color->getGreen()) / 2;
+        $b = ($this->blue + $color->getBlue()) / 2;
+        return new Collor($r,$g,$b);
     }
 
     public function getCollor(): string
