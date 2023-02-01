@@ -1,20 +1,24 @@
 <?php
-include dirname(__DIR__) . '/vendor/autoload.php';
-echo "<br>";
+include dirname(__DIR__) . '/src/autoloader.php';
+$loader = new \Example\Psr4AutoloaderClass();
+$loader->register();
+$loader->addNamespace('App\\', dirname(__DIR__) . '/src');
+$USD = new \App\Currency('USD');
+$EUR = new \App\Currency("EUR");
+$money = new \App\Money($USD, 10);
+$money1 = new \App\Money($USD, 20);
+var_dump($money1->getAmount());
+$money1->add($money);
+var_dump($money1->getAmount());
 
-echo 'Домашка 3' . "<br>";
-$collor = new \app\Collor(0,250,10);
-$collor2 = new \app\Collor(20,0,20);
-$collor3 = $collor2->mix($collor);
-var_dump($collor3->getCollor());
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Домашка 4 Currency</title>
 </head>
-<body style="background-color: <?= $collor->getCollor() ?>">
- <?= $collor3->getCollor()?>
+<body>
 </body>
 </html>
