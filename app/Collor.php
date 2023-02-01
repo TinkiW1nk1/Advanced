@@ -22,10 +22,9 @@ class Collor
 
     private function setRed($red): void
     {
-        if ($red > 0 && $red <= 255) {
-            $this->setRed($red);
+        if($red >= 0 && $red <= 255){
+            $this->red = $red;
         }
-        throw new \Exception("не коректний RED");
     }
 
     public function getGreen()
@@ -35,10 +34,7 @@ class Collor
 
     private function setGreen(int $green): void
     {
-        if ($green > 0 && $green <= 255) {
-            $this->setGreen($green);
-        }
-        throw new \Exception("не коректний GREEN");
+        $this->green = $green;
     }
 
     public function getBlue()
@@ -47,10 +43,7 @@ class Collor
     }
     private function setBlue(int $blue): void
     {
-        if($blue > 0 && $blue <= 255){
-            $this->setBlue($blue);
-        }
-        throw new \Exception("не коректний BLUE");
+      $this->blue = $blue;
     }
 
     public function mix(Collor $color): Collor
@@ -66,4 +59,6 @@ class Collor
     {
         return "rgb(".$this->red.", ".$this->green.", ".$this->blue.")";
     }
+
+
 }
