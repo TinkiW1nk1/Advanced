@@ -1,28 +1,28 @@
 <?php
-
+declare(strict_types=1);
 namespace App;
 
 use http\Exception\InvalidArgumentException;
 
 class Money
 {
-    private string $currency;
+    private Currency $currency;
     private int | float $amount;
 
     public function __construct(Currency $currency, int | float $amount)
     {
-        $this->setCurrency($currency->getIsoCode());
+        $this->setCurrency($currency);
         $this->setAmount($amount);
     }
 
-    private function setCurrency(string $currency): void
+    private function setCurrency(Currency $currency): void
     {
         $this->currency = $currency;
     }
 
     public function getCurrency(): string
     {
-        return $this->currency;
+        return $this->currency->getIsoCode();
     }
 
     private function setAmount(float|int $amount): void
@@ -35,15 +35,17 @@ class Money
         return $this->amount;
     }
 
-    public function equals(Money $currency)
+    public function equals(Money $currency): bool
     {
-        return $this->getCurrency() . " - " . $this->getAmount() . "<br>" .
-            $currency->getCurrency() . " - " . $currency->getAmount();
+        if($this->getCurrency() != $currency->getCurrency() && $this->getAmount() != $currency->getAmount()){
+        return false;
+            }
+        return true;
     }
 
     public function add(Money $money): void
     {
-        if($this->currency != $money->getCurrency()){
+        if($this->currency->getIsoCode() != $money->getCurrency()){
             throw new \InvalidArgumentException("валюта не вірна");
         }
         $this->amount =  $this->amount + $money->getAmount();

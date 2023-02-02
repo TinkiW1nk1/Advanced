@@ -1,5 +1,5 @@
 <?php
-
+declare(strict_types=1);
 namespace App;
 
 use http\Exception\InvalidArgumentException;
@@ -8,7 +8,7 @@ class Currency
 {
     private string $isoCode;
 
-    public function __construct($codCurrency)
+    public function __construct(string $codCurrency)
     {
         $this->setIsoCode($codCurrency);
     }
@@ -18,24 +18,21 @@ class Currency
         return $this->isoCode;
     }
 
-    private function setIsoCode($isoCode): void
+    private function setIsoCode(string $isoCode): void
     {
-        if($this->validateCodCurrency($isoCode) === true){
+        if($this->validateCodCurrency($isoCode)){
             $this->isoCode = strtoupper($isoCode);
         }else{
         throw new \InvalidArgumentException("це шо строка:" . $isoCode);
         }
     }
 
-    private function validateCodCurrency($code)
+    private function validateCodCurrency($code): bool
     {
         $lendCode = strlen($code);
-        if(is_string($code)){
-            if($lendCode != 3){
-                return false;
-            }
+        if(!is_string($code) && strlen($code) != 3){
             return true;
         }
-        return false;
+        return true;
     }
 }
