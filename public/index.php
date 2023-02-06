@@ -1,17 +1,14 @@
 <?php
 declare(strict_types=1);
-include dirname(__DIR__) . '/src/autoloader.php';
-$loader = new \Example\Psr4AutoloaderClass();
-$loader->register();
-$loader->addNamespace('App\\', dirname(__DIR__) . '/src');
-$USD = new \App\Currency('USD');
-$EUR = new \App\Currency('EUR');
-$money = new \App\Money($USD, 10);
-$money1 = new \App\Money($USD, 20);
-var_dump($money1->getAmount());
-$money1->add($money);
-var_dump($money1->getAmount());
-var_dump($money1->equals($money));
+include dirname(__DIR__) . '/vendor/autoload.php';
+//$user = \app\User::find(1);
+//var_dump($user);
+/*$user2 = new \app\User();
+$user2->setId(2)->setName('Alex')->setEmail('alex@gmail.com');
+var_dump($user2->delete(2));*/
+
+$user = new \app\User();
+var_dump($user->save('alex', 'asf'));
 
 ?>
 <!DOCTYPE html>
