@@ -10,17 +10,29 @@ class Model
         return "SELECT * FROM " . $table[1] . " WHERE id = " . $id;
     }
 
-    public function create(string $name, string $email)
+    public function create(array $data)
     {
         $table = explode('\\',(static::class));
         $cols = implode(', ', array_keys(get_class_vars(static::class)));
-        return "INSERT INTO " . $table[1] . " (" . "$cols" . ") VALUES ( :id, ". $name . ", " . $email .")";
+        $temp = [];
+        foreach ($data as $value){
+            $temp[] = "'" . $value . "'";
+        }
+        $value = implode(',', $temp);
+        $sql = "INSERT INTO " . $table[1] . " (" . "$cols" . ") VALUES ( " . $value . " )";
+        return $sql;
     }
 
-    public function update(int $id, string $name)
+    public function update(int $id, array $data)
     {
         $table = explode('\\', (static::class));
-        return "UPDATE " . $table[1] . " SET name = '" . $name . "', email = 'email', WHERE id = " . $id;
+        $temp = [];
+        foreach ($data as $key => $value)
+        {
+            $temp []= $key . ' = ' . $value;
+        }
+        $temp = implode(', ', $temp);
+        var_dump("UPDATE " . $table[1] . " SET " . $temp ." WHERE id = " . $id);
     }
 
     public function delete(int $id)

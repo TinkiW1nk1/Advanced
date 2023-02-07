@@ -3,13 +3,11 @@ declare(strict_types=1);
 include dirname(__DIR__) . '/vendor/autoload.php';
 //$user = \app\User::find(1);
 //var_dump($user);
-/*$user2 = new \app\User();
-$user2->setId(2)->setName('Alex')->setEmail('alex@gmail.com');
-var_dump($user2->delete(2));*/
-
 $user = new \app\User();
-var_dump($user->save('alex', 'asf'));
-
+//var_dump($user->create([1,'alex', 'email']));
+//$user->update(1,['name' => 'alex','email' => 'test@gmail.com']);
+$user->setId(1)->setName('alex')->setEmail('asfasg');
+$user->test();
 ?>
 <!DOCTYPE html>
 <html lang="en">

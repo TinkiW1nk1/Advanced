@@ -4,10 +4,9 @@ namespace app;
 
 class User extends Model
 {
-    protected int $id;
-    protected string $name;
-    protected string $email;
-
+    public int $id;
+    public string $name;
+    public string $email;
 
     public function getName(): string
     {
@@ -41,4 +40,5 @@ class User extends Model
         $this->id = $id;
         return $this;
     }
+
 }
