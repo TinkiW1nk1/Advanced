@@ -6,8 +6,6 @@ include dirname(__DIR__) . '/vendor/autoload.php';
 $user = new \app\User();
 //var_dump($user->create([1,'alex', 'email']));
 //$user->update(1,['name' => 'alex','email' => 'test@gmail.com']);
-$user->setId(1)->setName('alex')->setEmail('asfasg');
-$user->test();
 ?>
 <!DOCTYPE html>
 <html lang="en">

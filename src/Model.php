@@ -49,4 +49,5 @@ class Model
             $this->update($id, $name);
         }
     }
+
 }
