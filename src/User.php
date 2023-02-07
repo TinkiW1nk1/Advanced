@@ -40,4 +40,5 @@ class User extends Model
         $this->id = $id;
         return $this;
     }
+
 }
