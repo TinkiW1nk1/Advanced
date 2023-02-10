@@ -5,6 +5,7 @@
         }
     },
     "require": {
-        "php-amqplib/php-amqplib": "v3.2.*"
+        "illuminate/database": "v9.*",
+        "illuminate/events": "^9.51"
     }
 }
